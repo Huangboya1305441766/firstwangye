@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>穿搭案例 - StyleShare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="banner">
+        <nav class="nav-container">
+            <div class="logo">StyleShare</div>
+            <button class="nav-toggle" aria-label="切换导航菜单">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="guide.html">穿搭指南</a>
+                <a href="discover.html" class="active" aria-current="page">穿搭案例</a>
+                <a href="challenge.html">穿搭技巧</a>
+                <a href="community.html">穿搭理念</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content discover-page page-transition">
+        <section class="search-section">
+            <h1>穿搭案例</h1>
+            <p class="subtitle">浏览各种风格的穿搭案例，寻找你的灵感</p>
+        </section>
+
+        <section class="trending-tags">
+            <h2>热门风格</h2>
+            <div class="tag-cloud">
+                <span class="tag">#秋冬穿搭</span>
+                <span class="tag">#美式复古</span>
+                <span class="tag">#通勤ootd</span>
+                <span class="tag">#优衣库穿搭</span>
+                <span class="tag">#小个子显高</span>
+                <span class="tag">#日系简约</span>
+                <span class="tag">#韩系穿搭</span>
+                <span class="tag">#职场穿搭</span>
+                <span class="tag">#约会穿搭</span>
+                <span class="tag">#春季搭配</span>
+            </div>
+        </section>
+
+        <section class="discover-grid">
+            <div class="discover-content" id="discoverGrid">
+                <!-- 内容将通过JavaScript动态生成 -->
+            </div>
+        </section>
+
+        <section class="style-summary-section">
+            <div class="style-summary">
+                <h3>穿搭案例精选</h3>
+                <p>精选多样风格穿搭案例，从日常通勤到特殊场合，为你提供全方位的穿搭灵感，帮助你找到适合自己的个人风格。</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="discoverComponent.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

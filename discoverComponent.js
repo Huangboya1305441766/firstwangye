@@ -1,0 +1,196 @@
+// 发现页组件模块
+class DiscoverComponent {
+    constructor() {
+        this.discoverGrid = document.getElementById('discoverGrid');
+        this.outfits = [
+            {
+                id: 1,
+                image: 'images/2.jpeg',
+                title: '秋日河畔休闲穿搭',
+                description: '低饱和度的秋季穿搭，适合周末漫步或约会。搭配简约大方，展现气质与优雅。',
+                tags: ['#秋冬穿搭', '#约会穿搭', '#气质穿搭']
+            },
+            {
+                id: 2,
+                image: 'images/一个长发中国模特、面对镜头、街道、汽车、灰色针织长开衫、牛仔裤、黑色皮鞋、棕黑色头发、披肩发、阴沉天气、云层、光线、单肩包，超高清。.jpeg',
+                title: '都市通勤灰色系',
+                description: '灰色针织长开衫搭配牛仔裤，简约大方的都市通勤风格，适合日常工作与休闲场合。',
+                tags: ['#通勤ootd', '#日系简约', '#针织开衫']
+            },
+            {
+                id: 3,
+                image: 'images/写真照，全身，摄影拍摄质感，气质女模特，飘逸头发，质感很好的毛衣，时尚毛衣时装穿搭，年轻美丽，神情忧伤，侧脸抬头望着天空，靠着墙站着，背景光影模糊，五官精致、气质优美，8k分辨率，超高清画质，灯光照射....jpeg',
+                title: '质感毛衣艺术风',
+                description: '高质感毛衣搭配，展现艺术气息与时尚感，适合文艺场合与日常穿着，突显个人气质。',
+                tags: ['#毛衣穿搭', '#文艺风格', '#气质穿搭']
+            },
+            {
+                id: 4,
+                image: 'images/3.jpeg',
+                title: '秋日森林白毛衣',
+                description: '白色毛衣搭配精美围巾，长波浪卷发增添浪漫气息，适合秋季户外活动与写真拍摄。',
+                tags: ['#秋冬穿搭', '#毛衣穿搭', '#森系风格']
+            },
+            {
+                id: 5,
+                image: 'images/1.jpeg',
+                title: '春日花海绿毛衣',
+                description: '绿色毛衣搭配白色纱裙，清新自然的春季穿搭，适合户外踏青与赏花活动。',
+                tags: ['#春季搭配', '#绿色系', '#田园风']
+            },
+
+            {
+                id: 7,
+                image: 'images/4.jpeg',
+                title: '都市夜晚冷色调',
+                description: '胶片摄影风格的都市夜晚穿搭，冷色调展现清冷感与都市氛围。',
+                tags: ['#胶片风', '#都市穿搭', '#冷色调']
+            },
+            {
+                id: 8,
+                image: 'images/可爱甜美女人，穿着橘色宽松毛衣，小白半裙，橘色风毛绒小耳环， 时尚潮流穿搭，卷发齐肩，暖光，8k高清，极简风格，纯色背景莱卡，氛围感，半身，人像模式.jpeg',
+                title: '甜美橘色毛衣',
+                description: '橘色宽松毛衣搭配小白半裙，甜美可爱的日常穿搭风格。',
+                tags: ['#甜美风', '#橘色系', '#日常穿搭']
+            },
+            {
+                id: 9,
+                image: 'images/温柔奶油.jpeg',
+                title: '温柔奶油色开衫',
+                description: '奶油色针织开衫搭配高腰牛仔裤，温柔气质显高穿搭。',
+                tags: ['#温柔风', '#显高搭配', '#奶油色系']
+            },
+            {
+                id: 10,
+                image: 'images/摄影照片，摄影写真，写实人像，背景秋日森林和蓝色天空，完美光影，穿着白色毛衣围着好看的围巾的女子，长波浪卷发，艺术氛围感.jpeg',
+                title: '废土战损风格',
+                description: '粗布麻衣叠穿的战损风格穿搭，设计师款展现高级感与个性。',
+                tags: ['#战损风', '#设计师款', '#个性穿搭']
+            },
+            {
+                id: 11,
+                image: 'images/破碎文艺感，摄影写真，慢门摄影，抽帧摄影，延时摄影 ，创意人像摄影，全景 一个女生，棕色长发微卷，盛夏时尚穿搭，情绪暗调，城市街道，人来人往，光线虚化，形成模糊的拖影，慢快门，深邃迷离的眼神，全景，氛....jpeg',
+                title: '破碎文艺感穿搭',
+                description: '盛夏时尚穿搭与慢门摄影结合，展现破碎文艺感的城市风格。',
+                tags: ['#文艺风', '#城市穿搭', '#慢门摄影']
+            },
+            {
+                id: 12,
+                image: 'images/秋季出游穿搭，短裙系列.jpeg',
+                title: '秋季短裙穿搭',
+                description: '适合秋季出游的短裙系列穿搭，展现青春活力与时尚感。',
+                tags: ['#秋季穿搭', '#短裙系列', '#出游穿搭']
+            },
+            {
+                id: 13,
+                image: 'images/秋季，街拍穿搭，枫叶黄宽松毛衣搭配板栗色阔腿裤，懒散感。真实摄影效果，超高清画质。.jpeg',
+                title: '枫叶黄毛衣',
+                description: '枫叶黄宽松毛衣搭配阔腿裤，慵懒舒适的秋季街拍风格。',
+                tags: ['#秋季穿搭', '#宽松风格', '#街拍风']
+            },
+            {
+                id: 14,
+                image: 'images/秋季，街拍穿搭，淡蓝色寸衫裙，搭配樱花粉毛衣背心马甲，长筒袜，老爹鞋.jpeg',
+                title: '淡蓝衬衫裙',
+                description: '淡蓝色衬衫裙搭配樱花粉马甲，甜美复古的秋季街拍穿搭。',
+                tags: ['#秋季穿搭', '#甜美风', '#复古风']
+            },
+            {
+                id: 15,
+                image: 'images/设计一款韩版米色和粉红色的渐变色、圆领、宽松、公主、仙气，在衣身和袖口处添加粉红色和浅灰色的撞色的高腰长款连衣裙，外披一件开衫浅绿色短款针织衫，模特侧身看着观众，行走在步行街，拿着奶茶，棕色头发，大波....jpeg',
+                title: '韩版渐变连衣裙',
+                description: '米色与粉色渐变的高腰连衣裙，搭配浅绿开衫，展现韩系公主风。',
+                tags: ['#韩系风', '#公主风', '#渐变设计']
+            },
+            {
+                id: 16,
+                image: 'images/服装配饰，一位亚洲美女，穿一件深灰西装，背景是门店，高端大气，真实场景，门店实拍，店里两写英语字幕.jpeg',
+                title: '深灰西装门店风',
+                description: '深灰色西装搭配门店背景，展现高端大气的商务穿搭风格。',
+                tags: ['#商务风', '#西装穿搭', '#门店实拍']
+            }
+        ];
+    }
+
+    init() {
+        if (this.discoverGrid) {
+            this.setupTags();
+            this.renderOutfits();
+        }
+    }
+
+    // 搜索功能已移除
+
+    // 设置标签点击事件
+    setupTags() {
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                const tagText = tag.textContent;
+                this.searchContent(tagText);
+            });
+        });
+    }
+
+    // 标签筛选功能
+    searchContent(query) {
+        if (!query || typeof query !== 'string') {
+            console.warn('搜索内容无效，显示所有穿搭');
+            this.renderOutfits();
+            return;
+        }
+
+        console.log(`筛选: ${query}`);
+        try {
+            // 过滤穿搭内容
+            const lowerQuery = query.toLowerCase().trim();
+            const filteredOutfits = this.outfits.filter(outfit => {
+                return outfit.title.toLowerCase().includes(lowerQuery) || 
+                       outfit.description.toLowerCase().includes(lowerQuery) ||
+                       outfit.tags.some(tag => tag.toLowerCase().includes(lowerQuery));
+            });
+            
+            this.renderOutfits(filteredOutfits);
+        } catch (error) {
+            console.error('搜索过程中发生错误:', error);
+            this.renderOutfits();
+        }
+    }
+    
+    // 渲染穿搭案例
+    renderOutfits(outfitsToRender = this.outfits) {
+        if (!this.discoverGrid) return;
+        
+        this.discoverGrid.innerHTML = '';
+        
+        if (outfitsToRender.length === 0) {
+            this.discoverGrid.innerHTML = '<div class="no-results">没有找到匹配的穿搭案例</div>';
+            return;
+        }
+        
+        // 创建穿搭网格布局
+        const outfitGrid = document.createElement('div');
+        outfitGrid.className = 'outfit-grid';
+        
+        outfitsToRender.forEach(outfit => {
+            const outfitCard = document.createElement('div');
+            outfitCard.className = 'outfit-card';
+            
+            outfitCard.innerHTML = `
+                <div class="card-image">
+                    <img src="${outfit.image}" alt="${outfit.title}" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">${outfit.title}</h3>
+                    <p class="card-description">${outfit.description}</p>
+                    <div class="card-tags">
+                        ${outfit.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            
+            outfitGrid.appendChild(outfitCard);
+        });
+        
+        this.discoverGrid.appendChild(outfitGrid);
+    }
+}

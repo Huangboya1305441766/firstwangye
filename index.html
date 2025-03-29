@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleShare - 你的穿搭指南</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="landing-page">
+    <div class="landing-container">
+        <div class="landing-content">
+            <div class="logo-large">StyleShare</div>
+            <h1 class="landing-title">发现你的专属穿搭风格</h1>
+            <p class="landing-subtitle">简约、时尚、个性，让每一天的穿搭都充满自信</p>
+            <div class="landing-cta">
+                <a href="landing.html" class="cta-button" id="enterSite">开始探索 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="landing-image">
+            <img src="images/写真照，全身，摄影拍摄质感，气质女模特，飘逸头发，质感很好的毛衣，时尚毛衣时装穿搭，年轻美丽，神情忧伤，侧脸抬头望着天空，靠着墙站着，背景光影模糊，五官精致、气质优美，8k分辨率，超高清画质，灯光照射....jpeg" alt="时尚穿搭">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加进入动画
+            document.body.classList.add('page-enter');
+            
+            // 为landing页面元素添加不同方向的动画
+            const landingContent = document.querySelector('.landing-content');
+            const landingImage = document.querySelector('.landing-image');
+            
+            if (landingContent) landingContent.classList.add('slide-in-left');
+            if (landingImage) landingImage.classList.add('slide-in-right');
+            
+            const enterButton = document.getElementById('enterSite');
+            
+            enterButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 添加退出动画
+                document.body.classList.add('page-exit');
+                
+                // 动画结束后跳转
+                setTimeout(function() {
+                    window.location.href = 'landing.html';
+                }, 800);
+            });
+        });
+    </script>
+</body>
+</html>
