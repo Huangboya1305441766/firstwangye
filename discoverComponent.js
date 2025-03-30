@@ -168,7 +168,30 @@ class DiscoverComponent {
         console.log('renderOutfits方法被调用，准备渲染穿搭内容');
         if (!this.discoverGrid) {
             console.error('renderOutfits: discoverGrid元素不存在，无法渲染内容');
-            return;
+            // 尝试重新获取元素
+            this.discoverGrid = document.getElementById('discoverGrid');
+            console.log('尝试重新获取discoverGrid元素:', this.discoverGrid ? '成功' : '失败');
+            if (!this.discoverGrid) {
+                console.error('即使重试也无法获取discoverGrid元素，DOM可能尚未加载完成');
+                // 如果DOM中确实没有这个元素，尝试创建一个
+                const mainContent = document.querySelector('.discover-page') || document.querySelector('.main-content') || document.querySelector('main');
+                if (mainContent) {
+                    console.log('找到main-content元素，尝试创建discoverGrid');
+                    const discoverSection = document.querySelector('.discover-grid') || document.createElement('section');
+                    if (!document.querySelector('.discover-grid')) {
+                        discoverSection.className = 'discover-grid';
+                        mainContent.appendChild(discoverSection);
+                    }
+                    
+                    this.discoverGrid = document.createElement('div');
+                    this.discoverGrid.id = 'discoverGrid';
+                    this.discoverGrid.className = 'discover-content';
+                    discoverSection.appendChild(this.discoverGrid);
+                } else {
+                    console.error('无法找到main-content元素，无法创建discoverGrid');
+                    return;
+                }
+            }
         }
         
         console.log(`准备渲染${outfitsToRender.length}个穿搭项目`);
@@ -184,13 +207,49 @@ class DiscoverComponent {
         const outfitGrid = document.createElement('div');
         outfitGrid.className = 'outfit-grid';
         
+        // 记录当前网站的基础URL和路径，用于处理图片路径
+        const baseUrl = window.location.origin;
+        const pathName = window.location.pathname;
+        console.log('当前网站基础URL:', baseUrl, '路径:', pathName);
+        
+        // 确定图片路径前缀
+        let imgPathPrefix = '';
+        // 检查是否在Netlify或GitHub Pages环境
+        if (baseUrl.includes('netlify.app') || baseUrl.includes('github.io')) {
+            // 获取仓库名称作为路径前缀（针对GitHub Pages）
+            const pathParts = pathName.split('/');
+            if (pathParts.length > 1 && pathParts[1] !== '') {
+                imgPathPrefix = '/' + pathParts[1];
+                console.log('检测到GitHub Pages环境，使用路径前缀:', imgPathPrefix);
+            }
+        }
+        
         outfitsToRender.forEach(outfit => {
             const outfitCard = document.createElement('div');
             outfitCard.className = 'outfit-card';
             
+            // 处理图片路径，确保在不同环境下都能正确加载
+            let imagePath = outfit.image;
+            
+            // 检查是否是相对路径，如果是，则根据当前环境调整
+            if (imagePath.startsWith('images/')) {
+                // 尝试多种可能的路径格式
+                const possiblePaths = [
+                    imagePath,                    // 原始路径: images/1.jpeg
+                    '/' + imagePath,             // 根路径: /images/1.jpeg
+                    imgPathPrefix + '/' + imagePath // 带前缀路径: /repo-name/images/1.jpeg
+                ];
+                
+                console.log('图片可能的路径:', possiblePaths);
+                
+                // 默认使用第一个路径
+                imagePath = possiblePaths[0];
+            }
+            
             outfitCard.innerHTML = `
                 <div class="card-image">
-                    <img src="${outfit.image}" alt="${outfit.title}" loading="lazy">
+                    <img src="${imagePath}" alt="${outfit.title}" loading="lazy" 
+                         onerror="handleImageError(this, '${imagePath}')">
                 </div>
                 <div class="card-info">
                     <h3 class="card-title">${outfit.title}</h3>
@@ -205,5 +264,11 @@ class DiscoverComponent {
         });
         
         this.discoverGrid.appendChild(outfitGrid);
+        console.log('穿搭内容渲染完成');
     }
+}
+
+// 移除之前添加的全局图片错误处理函数
+function handleImageError(img, originalSrc) {
+    // 这个函数已经移到script.js中
 }
