@@ -1,7 +1,9 @@
 // 发现页组件模块
 class DiscoverComponent {
     constructor() {
+        console.log('DiscoverComponent构造函数被调用');
         this.discoverGrid = document.getElementById('discoverGrid');
+        console.log('discoverGrid元素获取状态:', this.discoverGrid ? '成功' : '失败');
         this.outfits = [
             {
                 id: 1,
@@ -113,9 +115,14 @@ class DiscoverComponent {
     }
 
     init() {
+        console.log('DiscoverComponent.init()方法被调用');
         if (this.discoverGrid) {
+            console.log('discoverGrid元素存在，开始初始化组件');
             this.setupTags();
             this.renderOutfits();
+        } else {
+            console.error('discoverGrid元素不存在，无法初始化组件');
+            console.log('DOM元素状态:', document.getElementById('discoverGrid'));
         }
     }
 
@@ -158,11 +165,17 @@ class DiscoverComponent {
     
     // 渲染穿搭案例
     renderOutfits(outfitsToRender = this.outfits) {
-        if (!this.discoverGrid) return;
+        console.log('renderOutfits方法被调用，准备渲染穿搭内容');
+        if (!this.discoverGrid) {
+            console.error('renderOutfits: discoverGrid元素不存在，无法渲染内容');
+            return;
+        }
         
+        console.log(`准备渲染${outfitsToRender.length}个穿搭项目`);
         this.discoverGrid.innerHTML = '';
         
         if (outfitsToRender.length === 0) {
+            console.log('没有找到匹配的穿搭案例');
             this.discoverGrid.innerHTML = '<div class="no-results">没有找到匹配的穿搭案例</div>';
             return;
         }

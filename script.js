@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 初始化发现页组件
-    if (document.getElementById('discoverGrid')) {
-        new DiscoverComponent();
-    }
+    console.log('DOM加载完成，检查页面类型');
+    // 不在这里初始化DiscoverComponent，统一在下方根据页面路径初始化
     
     // 页面加载动画
     document.body.classList.add('page-enter');
@@ -73,9 +72,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (window.location.pathname.includes('discover.html')) {
+        console.log('当前页面是discover.html');
         if (typeof DiscoverComponent !== 'undefined') {
+            console.log('DiscoverComponent已定义，准备初始化');
             const discoverComponent = new DiscoverComponent();
+            console.log('DiscoverComponent实例已创建，调用init方法');
             discoverComponent.init();
+        } else {
+            console.error('DiscoverComponent未定义，请检查discoverComponent.js是否正确加载');
         }
     }
 

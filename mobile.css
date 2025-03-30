@@ -1,0 +1,241 @@
+/* 移动端优化样式 */
+/* 添加到现有样式表后面，或者通过<link>标签引入 */
+
+/* 基础响应式设置 */
+@media (max-width: 1024px) {
+    .outfit-grid,
+    .discover-grid,
+    .feature-cards,
+    .tip-content {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .community-layout {
+        grid-template-columns: 250px 1fr;
+    }
+    
+    .landing-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* 平板设备 */
+@media (max-width: 768px) {
+    /* 导航栏优化 */
+    .nav-container {
+        padding: 0.5rem var(--spacing-sm);
+    }
+    
+    .nav-toggle {
+        display: block;
+        padding: 1.2rem;
+        min-width: 48px;
+        min-height: 48px;
+        z-index: 100;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.95);
+        flex-direction: column;
+        padding: 5rem 2rem 2rem;
+        z-index: 90;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 1.2rem;
+        font-size: 1.2rem;
+        margin: 0.5rem 0;
+    }
+    
+    /* 布局优化 */
+    .community-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .community-sidebar {
+        order: 2;
+    }
+    
+    .landing-container {
+        flex-direction: column-reverse;
+        width: 95%;
+    }
+    
+    .landing-image {
+        height: 40vh;
+    }
+    
+    /* 卡片和网格布局优化 */
+    .outfit-grid,
+    .discover-grid,
+    .feature-cards,
+    .tip-content {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: var(--spacing-sm);
+    }
+    
+    /* 内容间距优化 */
+    section {
+        padding: var(--spacing-sm);
+    }
+    
+    .outfit-section,
+    .tip-section {
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    /* 字体大小优化 */
+    .outfit-section h2,
+    .tip-section h2,
+    .welcome-section h1 {
+        font-size: 1.8rem;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* 手机设备 */
+@media (max-width: 576px) {
+    /* 导航栏进一步优化 */
+    .nav-links {
+        width: 80%;
+        padding-top: 6rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    /* 布局进一步优化 */
+    .outfit-grid,
+    .discover-grid,
+    .feature-cards,
+    .tip-content {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 卡片优化 */
+    .card-image {
+        padding-top: 100%; /* 1:1比例更适合小屏幕 */
+    }
+    
+    .card-image img {
+        aspect-ratio: 1/1;
+    }
+    
+    /* 内容间距进一步优化 */
+    :root {
+        --spacing-sm: 0.8rem;
+        --spacing-md: 1.2rem;
+        --spacing-lg: 2rem;
+    }
+    
+    /* 字体大小进一步优化 */
+    .outfit-section h2,
+    .tip-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .welcome-section h1 {
+        font-size: 1.7rem;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+    }
+    
+    .card-description {
+        font-size: 0.9rem;
+    }
+    
+    /* 按钮优化 */
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        min-width: 140px;
+    }
+    
+    /* 标签云优化 */
+    .tag-cloud {
+        gap: 0.5rem;
+    }
+    
+    .tag {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* 超小屏幕设备 */
+@media (max-width: 375px) {
+    :root {
+        --spacing-sm: 0.6rem;
+        --spacing-md: 1rem;
+        --spacing-lg: 1.8rem;
+    }
+    
+    .nav-links {
+        width: 85%;
+        padding: 5rem 1rem 1rem;
+    }
+    
+    .logo {
+        font-size: 1.3rem;
+    }
+    
+    .outfit-section h2,
+    .tip-section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .welcome-section h1 {
+        font-size: 1.5rem;
+    }
+    
+    .card-title {
+        font-size: 1rem;
+    }
+    
+    .card-description {
+        font-size: 0.85rem;
+    }
+    
+    /* 确保内容不溢出 */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* 优化触摸目标大小 */
+    button, 
+    .nav-links a,
+    .cta-button,
+    .feature-link {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
