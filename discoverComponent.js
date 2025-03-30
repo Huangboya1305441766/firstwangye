@@ -55,7 +55,7 @@ class DiscoverComponent {
             },
             {
                 id: 9,
-                image: 'images/温柔奶油.jpeg',
+                image: 'images/gentle-cream.jpeg',
                 title: '温柔奶油色开衫',
                 description: '奶油色针织开衫搭配高腰牛仔裤，温柔气质显高穿搭。',
                 tags: ['#温柔风', '#显高搭配', '#奶油色系']
@@ -76,7 +76,7 @@ class DiscoverComponent {
             },
             {
                 id: 12,
-                image: 'images/秋季出游穿搭，短裙系列.jpeg',
+                image: 'images/autumn-skirt-series.jpeg',
                 title: '秋季短裙穿搭',
                 description: '适合秋季出游的短裙系列穿搭，展现青春活力与时尚感。',
                 tags: ['#秋季穿搭', '#短裙系列', '#出游穿搭']

@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // 初始化发现页组件
+    if (document.getElementById('discoverGrid')) {
+        new DiscoverComponent();
+    }
+    
     // 页面加载动画
     document.body.classList.add('page-enter');
     
