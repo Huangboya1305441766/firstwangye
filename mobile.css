@@ -73,10 +73,20 @@
     .landing-container {
         flex-direction: column-reverse;
         width: 95%;
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto;
     }
     
     .landing-image {
-        height: 40vh;
+        height: 35vh;
+    }
+    
+    /* 确保landing页面在移动端可滚动 */
+    .landing-page {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
     }
     
     /* 卡片和网格布局优化 */
@@ -112,6 +122,51 @@
     
     .subtitle {
         font-size: 1rem;
+    }
+}
+
+/* 横屏模式优化 */
+@media (max-width: 896px) and (orientation: landscape) {
+    .landing-page {
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .landing-container {
+        flex-direction: row;
+        height: auto;
+        min-height: 80vh;
+        max-height: none;
+        padding: var(--spacing-sm);
+    }
+    
+    .landing-image {
+        height: auto;
+        max-width: 50%;
+    }
+    
+    .landing-content {
+        padding: var(--spacing-sm);
+        justify-content: center;
+        text-align: left;
+    }
+    
+    .landing-title {
+        font-size: 1.6rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .landing-cta {
+        margin-bottom: 0;
+    }
+    
+    .cta-button {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -174,6 +229,28 @@
         padding: 0.8rem 1.5rem;
         font-size: 0.9rem;
         min-width: 140px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 10;
+    }
+    
+    /* landing页面优化 */
+    .landing-content {
+        padding: var(--spacing-md);
+        text-align: center;
+    }
+    
+    .landing-title {
+        font-size: 1.8rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .landing-cta {
+        margin-bottom: var(--spacing-md);
     }
     
     /* 标签云优化 */
@@ -198,6 +275,25 @@
     .nav-links {
         width: 85%;
         padding: 5rem 1rem 1rem;
+    }
+    
+    /* 进一步优化landing页面在超小屏幕上的显示 */
+    .landing-container {
+        width: 100%;
+        height: auto;
+        padding: var(--spacing-sm);
+    }
+    
+    .landing-image {
+        height: 30vh;
+    }
+    
+    .landing-title {
+        font-size: 1.6rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 0.9rem;
     }
     
     .logo {
