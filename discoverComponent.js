@@ -267,8 +267,3 @@ class DiscoverComponent {
         console.log('穿搭内容渲染完成');
     }
 }
-
-// 移除之前添加的全局图片错误处理函数
-function handleImageError(img, originalSrc) {
-    // 这个函数已经移到script.js中
-}

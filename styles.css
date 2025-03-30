@@ -24,8 +24,10 @@
 }
 
 /* 自定义滚动条样式 - 优化圆角设计 */
-scrollbar-width: thin;
-scrollbar-color: var(--primary) var(--bg-light);
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--bg-light);
+}
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -51,13 +53,13 @@ scrollbar-color: var(--primary) var(--bg-light);
 
 body {
     font-family: 'Roboto', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: var(--bg-light);
-    background-image: linear-gradient(rgba(255, 182, 193, 0.05) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255, 182, 193, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
+    background: linear-gradient(to bottom, #fce4ec, #fff);
+    background-attachment: fixed;
+    background-size: cover;
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 
@@ -115,6 +117,8 @@ body {
     font-weight: 700;
     color: var(--text-dark);
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    font-style: italic;
+    font-family: 'Roboto', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .nav-toggle {
@@ -205,6 +209,7 @@ section {
     margin-bottom: var(--spacing-md);
     border: 1px solid var(--primary);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
 }
 
 .outfit-card:hover {
@@ -606,12 +611,12 @@ section {
     color: var(--text-dark);
 }
 
-/* 折叠面板样式 - 优化错落布局和减少留白 */
+/* 折叠面板样式 - 单列下拉式折叠 */
 .collapsible-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-sm);
-    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    max-width: 900px;
     margin: 0 auto;
     margin-top: var(--spacing-sm);
     padding: var(--spacing-sm);
@@ -627,29 +632,14 @@ section {
     overflow: hidden;
 }
 
-/* 增强错落效果，减少留白 */
+/* 单列折叠效果 */
 .collapsible-container .collapsible-item {
-    margin-bottom: var(--spacing-sm);
-}
-
-.collapsible-container .collapsible-item:nth-child(odd) {
-    transform: translateY(-10px);
-}
-
-.collapsible-container .collapsible-item:nth-child(even) {
-    transform: translateY(10px);
-}
-
-.collapsible-container .collapsible-item:nth-child(3n) {
-    transform: translateY(-5px);
-}
-
-.collapsible-container .collapsible-item:nth-child(3n+1) {
-    transform: translateY(5px);
+    margin-bottom: var(--spacing-md);
+    transform: none;
 }
 
 .collapsible-container .collapsible-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: var(--hover-shadow);
 }
 
@@ -691,43 +681,59 @@ section {
 }
 
 .collapsible-icon {
-    display: none; /* 隐藏折叠图标 */
+    display: inline-block; /* 显示折叠图标 */
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.collapsible-header {
+    cursor: pointer; /* 添加指针样式表示可点击 */
 }
 
 .collapsible-content {
-    max-height: none; /* 始终展开 */
-    overflow: visible;
-    padding: var(--spacing-sm);
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--spacing-sm);
+    max-height: 0; /* 默认折叠 */
+    overflow: hidden;
+    padding: 0 var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.collapsible-item.active .collapsible-content {
+    max-height: 2000px; /* 展开时的最大高度，根据内容调整 */
+    padding: var(--spacing-md) var(--spacing-sm);
+}
+
+.collapsible-item.active .collapsible-icon {
+    transform: rotate(180deg);
 }
 
 @media (max-width: 768px) {
     .collapsible-container {
-        grid-template-columns: 1fr;
+        width: 100%;
+        padding: var(--spacing-sm) 0;
     }
     
-    /* 在移动设备上保留部分错位效果 */
     .collapsible-container .collapsible-item {
         margin-bottom: var(--spacing-sm);
-    }
-    
-    .collapsible-container .collapsible-item:nth-child(odd) {
-        transform: translateY(-8px);
-    }
-    
-    .collapsible-container .collapsible-item:nth-child(even) {
-        transform: translateY(8px);
-    }
-    
-    .collapsible-container .collapsible-item:nth-child(3n),
-    .collapsible-container .collapsible-item:nth-child(3n+1) {
-        transform: translateY(0);
+        transform: none;
     }
     
     .collapsible-container .collapsible-item:hover {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
+    }
+    
+    .collapsible-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .card-content {
+        padding: var(--spacing-sm);
+    }
+    
+    .card-content ul li {
+        word-wrap: break-word;
     }
 }
 
@@ -1176,10 +1182,9 @@ html {
     line-height: 1.6;
 }
 
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* 使用已定义的fadeInUp动画 */
+
+.tip-item h3 {
     font-size: 1.4rem;
     margin-bottom: var(--spacing-sm);
     border-left: 3px solid var(--accent-secondary);
@@ -1340,12 +1345,12 @@ html {
     color: var(--text-dark);
 }
 
-/* 折叠面板样式 - 优化错落布局和减少留白 */
+/* 折叠面板样式 - 单列下拉式折叠 */
 .collapsible-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-sm);
-    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    max-width: 900px;
     margin: 0 auto;
     margin-top: var(--spacing-sm);
     padding: var(--spacing-sm);
@@ -1361,29 +1366,14 @@ html {
     overflow: hidden;
 }
 
-/* 增强错落效果，减少留白 */
+/* 单列折叠效果 */
 .collapsible-container .collapsible-item {
-    margin-bottom: var(--spacing-sm);
-}
-
-.collapsible-container .collapsible-item:nth-child(odd) {
-    transform: translateY(-10px);
-}
-
-.collapsible-container .collapsible-item:nth-child(even) {
-    transform: translateY(10px);
-}
-
-.collapsible-container .collapsible-item:nth-child(3n) {
-    transform: translateY(-5px);
-}
-
-.collapsible-container .collapsible-item:nth-child(3n+1) {
-    transform: translateY(5px);
+    margin-bottom: var(--spacing-md);
+    transform: none;
 }
 
 .collapsible-container .collapsible-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: var(--hover-shadow);
 }
 
@@ -1425,43 +1415,59 @@ html {
 }
 
 .collapsible-icon {
-    display: none; /* 隐藏折叠图标 */
+    display: inline-block; /* 显示折叠图标 */
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.collapsible-header {
+    cursor: pointer; /* 添加指针样式表示可点击 */
 }
 
 .collapsible-content {
-    max-height: none; /* 始终展开 */
-    overflow: visible;
-    padding: var(--spacing-sm);
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--spacing-sm);
+    max-height: 0; /* 默认折叠 */
+    overflow: hidden;
+    padding: 0 var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.collapsible-item.active .collapsible-content {
+    max-height: 2000px; /* 展开时的最大高度，根据内容调整 */
+    padding: var(--spacing-md) var(--spacing-sm);
+}
+
+.collapsible-item.active .collapsible-icon {
+    transform: rotate(180deg);
 }
 
 @media (max-width: 768px) {
     .collapsible-container {
-        grid-template-columns: 1fr;
+        width: 100%;
+        padding: var(--spacing-sm) 0;
     }
     
-    /* 在移动设备上保留部分错位效果 */
     .collapsible-container .collapsible-item {
         margin-bottom: var(--spacing-sm);
-    }
-    
-    .collapsible-container .collapsible-item:nth-child(odd) {
-        transform: translateY(-8px);
-    }
-    
-    .collapsible-container .collapsible-item:nth-child(even) {
-        transform: translateY(8px);
-    }
-    
-    .collapsible-container .collapsible-item:nth-child(3n),
-    .collapsible-container .collapsible-item:nth-child(3n+1) {
-        transform: translateY(0);
+        transform: none;
     }
     
     .collapsible-container .collapsible-item:hover {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
+    }
+    
+    .collapsible-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .card-content {
+        padding: var(--spacing-sm);
+    }
+    
+    .card-content ul li {
+        word-wrap: break-word;
     }
 }
 
@@ -1910,10 +1916,9 @@ html {
     line-height: 1.6;
 }
 
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* 使用已定义的fadeInUp动画 */
+
+.tip-item h3 {
     font-size: 1.4rem;
     margin-bottom: var(--spacing-sm);
     border-left: 3px solid var(--accent-secondary);
@@ -2074,12 +2079,12 @@ html {
     color: var(--text-dark);
 }
 
-/* 折叠面板样式 - 优化错落布局和减少留白 */
+/* 折叠面板样式 - 单列下拉式折叠 */
 .collapsible-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-sm);
-    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    max-width: 900px;
     margin: 0 auto;
     margin-top: var(--spacing-sm);
     padding: var(--spacing-sm);
@@ -2095,29 +2100,14 @@ html {
     overflow: hidden;
 }
 
-/* 增强错落效果，减少留白 */
+/* 单列折叠效果 */
 .collapsible-container .collapsible-item {
-    margin-bottom: var(--spacing-sm);
-}
-
-.collapsible-container .collapsible-item:nth-child(odd) {
-    transform: translateY(-10px);
-}
-
-.collapsible-container .collapsible-item:nth-child(even) {
-    transform: translateY(10px);
-}
-
-.collapsible-container .collapsible-item:nth-child(3n) {
-    transform: translateY(-5px);
-}
-
-.collapsible-container .collapsible-item:nth-child(3n+1) {
-    transform: translateY(5px);
+    margin-bottom: var(--spacing-md);
+    transform: none;
 }
 
 .collapsible-container .collapsible-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: var(--hover-shadow);
 }
 
@@ -2128,3 +2118,4 @@ html {
 
 .collapsible-header {
     padding: var(--spacing-md);
+}

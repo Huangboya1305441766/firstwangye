@@ -54,29 +54,34 @@ document.addEventListener('DOMContentLoaded', function() {
         element.classList.add('page-enter');
     });
     
-    // 导航菜单切换功能
+    // 导航菜单切换
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    if (navToggle) {
+    if (navToggle && navLinks) {
         navToggle.addEventListener('click', function() {
             navLinks.classList.toggle('active');
         });
     }
     
-    // 移除折叠面板功能，使所有面板始终展开
+    // 折叠面板功能
+    const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+    
+    if (collapsibleHeaders) {
+        collapsibleHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+        
+
+    }
+    
+    // 移除默认展开所有面板的代码
     const collapsibleItems = document.querySelectorAll('.collapsible-item');
     const collapsibleContents = document.querySelectorAll('.collapsible-content');
-    
-    // 默认展开所有面板
-    collapsibleItems.forEach(item => {
-        item.classList.add('active');
-    });
-    
-    collapsibleContents.forEach(content => {
-        content.classList.add('active');
-    });
-    
+
     // 添加页面间的过渡效果
     const pageLinks = document.querySelectorAll('a[href]:not([target="_blank"])');
     

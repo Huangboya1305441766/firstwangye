@@ -10,14 +10,4 @@ export class CommunityComponent {
             this.setupFollowButtons();
         }
     }
-
-    // 设置点赞按钮
-    setupLikeButtons() {
-        // 静态页面，无点赞功能
-    }
-
-    // 设置关注按钮
-    setupFollowButtons() {
-        // 静态页面，无关注功能
-    }
 }
